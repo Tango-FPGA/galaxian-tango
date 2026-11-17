@@ -1,0 +1,85 @@
+<misterromdescription>
+	<name>Star Fighter</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative>Galaxian</alternative>
+	<platform></platform>
+	<series></series>
+	<year>1979</year>
+	<manufacturer>Jeutel</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>starfght</setname>
+	<parent></parent>
+	<mameversion>0218</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "_alternatives/_Galaxian/Star Fighter.mra" (the MiSTer
+	     arcade package's _Arcade folder). The <rom> entries and <nvram> are MiSTer's, unchanged: rom index 1 is the
+	     game byte, rom index 0 the image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score table
+	     where MiSTer has one. <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS swarm (GAME line 16299, set
+	     starfght): the menu has Cabinet (bit 5), Service Mode (bit 6), Coinage (bits 14,15), Bonus Life (bits 16,17),
+	     Lives (bit 18), Difficulty (bit 19) with MAME's settings and defaults. Changed or removed from MiSTer's file:
+	     Service (bit 7: Off,On); Test (bit 6: Off,On); Coinage (bits 14,15: 1c/1cr,1c/2cr,2c/1cr,Free Play); Bonus Life
+	     After (bits 16,17: 7000,10000,12000,20000); Lives (bit 18: 2,3). The default is 9F,1F,00 (MiSTer's file:
+	     1F,1F,04). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin, Service), and sets no default
+	     layout (the buttons are defined in the menu). The empty rom index 1 leaves the core on its default game byte,
+	     00 (Galaxian). No ROM data from a MAME zip is in this file: the ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,Service"></buttons>
+
+	<switches default="9F,1F,00">
+		<dip bits="5" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="6" ids="Off,On" name="Service Mode"></dip>
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,1 Coin/2 Credits,Free Play" name="Coinage" values="1,0,2,3"></dip>
+		<dip bits="16,17" ids="10000,20000,40000,None" name="Bonus Life" values="1,2,3,0"></dip>
+		<dip bits="18" ids="3,4" name="Lives"></dip>
+		<dip bits="19" ids="Easy,Hard" name="Difficulty"></dip>
+	</switches>
+
+	<rom index="1"></rom>
+	<rom index="0" md5="d51a0a26344532a49ef61d9b6eb79587" zip="galaxian.zip|starfght.zip">
+		<part crc="c6ab558b" name="ja.1"></part>
+		<part crc="34b99fed" name="jb.2"></part>
+		<part crc="30e28016" name="jc.3"></part>
+		<part crc="de7e7770" name="jd.4"></part>
+		<part crc="a916c919" name="je.5"></part>
+		<part crc="9175882b" name="jf.6"></part>
+		<part crc="707c0f02" name="jg.7"></part>
+		<part crc="5dd26461" name="jh.8"></part>
+		<part crc="6651fe93" name="ji.9"></part>
+		<part crc="12c721b9" name="jj.10"></part>
+		<part crc="6651fe93" name="ji.9"></part>
+		<part crc="12c721b9" name="jj.10"></part>
+		<part crc="6651fe93" name="ji.9"></part>
+		<part crc="12c721b9" name="jj.10"></part>
+		<part crc="6651fe93" name="ji.9"></part>
+		<part crc="12c721b9" name="jj.10"></part>
+		<part crc="977e37cf" name="k1.7a"></part>
+		<part crc="977e37cf" name="k1.7a"></part>
+		<part crc="15e387ce" name="k2.9a"></part>
+		<part crc="15e387ce" name="k2.9a"></part>
+		<part crc="24652bc4" name="mmi6331.7f"></part>
+		</rom>
+	<rom index="2"></rom>
+	<rom index="3"></rom>
+	<rom index="4"></rom>
+
+	<nvram></nvram>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

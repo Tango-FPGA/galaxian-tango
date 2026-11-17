@@ -1,0 +1,78 @@
+<misterromdescription>
+	<name>War of the Bugs or Monsterous Manouvers in a Mushroom Maze</name>
+	<region>USA</region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative>War of the Bugs</alternative>
+	<platform></platform>
+	<series></series>
+	<year>1981</year>
+	<manufacturer>Armenia</manufacturer>
+	<manufacturer>Super Video Games</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>warofbugu</setname>
+	<parent>warofbug</parent>
+	<mameversion>0218</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "_alternatives/_War of the Bugs/War of the Bugs or
+	     Monsterous Manouvers in a Mushroom Maze (US).mra" (the MiSTer arcade package's _Arcade folder). The <rom>
+	     entries and <nvram> are MiSTer's, unchanged: rom index 1 is the game byte, rom index 0 the image in upstream's
+	     layout (its md5 is MiSTer's), rom index 3 the hi-score table where MiSTer has one. <switches> follow MAME
+	     0.264's galaxian.cpp INPUT_PORTS warofbug (GAME line 16352, set warofbugu): the menu has Cabinet (bit 5),
+	     Coinage (bits 14,15), Lives (bits 16,17), Bonus Life (bit 19) with MAME's settings and defaults. Off the menu
+	     at MAME's default: Unused (bit 18). Changed or removed from MiSTer's file: Coinage (bits 14,15:
+	     1c/1cr,2c/1cr,Free Play); Bonus Life After (bit 19: 50k,75k). The default is DF,3F,0A (MiSTer's file:
+	     DF,3F,F2). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin, Service); Service is "-", not
+	     read by this game, and sets no default layout (the buttons are defined in the menu). No ROM data from a MAME
+	     zip is in this file: the ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>8-way</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,-"></buttons>
+
+	<switches default="DF,3F,0A">
+		<dip bits="5" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,Free Play" name="Coinage" values="1,0,3"></dip>
+		<dip bits="16,17" ids="1,2,3,4" name="Lives"></dip>
+		<dip bits="19" ids="500000,750000" name="Bonus Life" values="1,0"></dip>
+	</switches>
+
+	<rom index="1">
+		<part>0E</part>
+		</rom>
+	<rom index="0" md5="031dd84ebd0ac35c65f52a17d245eb1c" zip="warofbug.zip|warofbugu.zip">
+		<part crc="b8dfb7e3" name="wb-prog-1.7d"></part>
+		<part crc="fd8854e0" name="wb-prog-2.7e"></part>
+		<part crc="4495aa14" name="wb-prog-3.7j"></part>
+		<part crc="e4bd257c" name="wb-prog-4.7n"></part>
+		<part crc="71257bb4" name="wb-prog-5.7p"></part>
+		<part crc="71257bb4" name="wb-prog-5.7p"></part>
+		<part crc="71257bb4" name="wb-prog-5.7p"></part>
+		<part crc="71257bb4" name="wb-prog-5.7p"></part>
+		<part crc="8100fa85" name="warofbug.1k"></part>
+		<part crc="8100fa85" name="warofbug.1k"></part>
+		<part crc="d1220ae9" name="warofbug.1j"></part>
+		<part crc="d1220ae9" name="warofbug.1j"></part>
+		<part crc="8688e64b" name="warofbug.clr"></part>
+		</rom>
+	<rom index="2"></rom>
+	<rom index="3"></rom>
+	<rom index="4"></rom>
+
+	<nvram></nvram>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

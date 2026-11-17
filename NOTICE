@@ -1,0 +1,103 @@
+galaxian-tango -- licences and third-party material
+===================================================
+
+The Tango authors' files in this repository are distributed under the GNU General Public License, version 3 or (at
+your option) any later version (GPL-3.0-or-later; LICENSE is the GPL version 3 text), Copyright (c) 2026 the Tango
+authors, as each file's SPDX header says.  The core runs the games of MiSTer-devel/Arcade-Galaxian_MiSTer
+(https://github.com/MiSTer-devel/Arcade-Galaxian_MiSTer, commit e6b4dc5e7a89b2f9aceeed338eab71ea9b5624aa), but its
+game logic is the Tango authors' own RTL, written from the original boards' schematics and manuals; the only files
+taken from that repository are the ones listed below, which keep their own licences.
+
+The framework at sys/ is a separate repository (sys-tango), included as a git submodule; its own LICENSE and NOTICE
+cover it.
+
+Bitstreams: a bitstream built from this repository is a combined work distributed under GPL-3.0-or-later. It
+contains the BSD-style-licensed T80 files listed below, whose terms require their copyright notice, conditions and
+disclaimer to be reproduced in the documentation distributed with the bitstream: this NOTICE is that documentation,
+and every release carries it. Its source is this repository with sys-tango at sys/ (the commit the submodule points
+at). PLL_INIT, and in DDR3 builds the DDR3 Memory Interface IP, which the build takes from the user's Gowin
+installation, keep Gowin's terms (sys-tango's NOTICE).
+
+
+Vendored upstream files (rtl/galaxian/; rtl/galaxian/README.md has each file's sha256)
+--------------------------------------------------------------------------------------
+  - rtl/galaxian/T80/T80se.vhd, T80.vhd, T80_ALU.vhd, T80_MCode.vhd, T80_Reg.vhd, T80_Pack.vhd: the T80
+    Z80-compatible CPU, unchanged, Copyright (c) 2001-2002 Daniel Wallner (T80_Reg.vhd: 2002), BSD-style licence,
+    text B below; T80.vhd, T80_ALU.vhd, T80_MCode.vhd and T80_Reg.vhd also carry "T80(c) core ... Version 350.
+    Copyright (c) 2018 Sorgelig" and modification notes by MikeJ (2005) and TobiFlex (2010), under the same terms.
+  - rtl/galaxian/hiscore.v: a modified copy of "MAME hiscore.dat support for MiSTer arcade cores"
+    (https://github.com/JimmyStones/Hiscores_MiSTer, version 0014 as in MiSTer-devel/Arcade-Galaxian_MiSTer),
+    Copyright (c) 2021 Alan Steremberg, Copyright (c) 2021 Jim Gregory, GNU General Public License, version 3 or (at
+    your option) any later version, as its header says.  The Tango authors changed it (2026, same licence; the
+    changes are listed in the file's header after the version history): T1, a completed index-4 (dump) download is
+    pending restore and re-arms an idle state machine; T2, an OSD-open extraction never overwrites a dump that is
+    downloading or pending restore, and hands the state machine back to the restore; T3, an extraction captures the
+    game's table only once it is trustworthy (its start/end values seen valid since reset, or START_WAIT elapsed since
+    reset).  The module's ports and parameters are unchanged.  The same modified file is used by galaga-tango.
+
+Text B (Daniel Wallner, T80):
+
+    Copyright (c) 2001-2002 Daniel Wallner (jesus@opencores.org)
+    All rights reserved
+    
+    Redistribution and use in source and synthezised forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    
+    Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+    
+    Redistributions in synthesized form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+    
+    Neither the name of the author nor the names of other contributors may
+    be used to endorse or promote products derived from this software without
+    specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+
+
+Upstream files NOT in this repository
+-------------------------------------
+  - Arcade-Galaxian.sv (MiSTer's top level): the Tango wrapper replaces it.
+  - The game logic -- rtl/galaxian.vhd, mc_adec.vhd, mc_bram.vhd, mc_col_pal.vhd, mc_hv_count.vhd, mc_inport.vhd,
+    mc_ld_pls.vhd, mc_logic.vhd, mc_missile.vhd, mc_sound_a.vhd, mc_sound_b.vhd, mc_stars.vhd, mc_video.vhd,
+    kb_synth.vhd, mc_sound_vco.vhd, sine_package.vhd -- and the sample tables ROM/FIR.vhd and ROM/HIT.vhd: none of
+    them is in this repository, in whole or in part.  The core's game logic is the Tango authors' own RTL.
+  - rtl/pause.v, rtl/dpram.vhd, rtl/spram.vhd, rtl/mc_clocks.vhd, rtl/ttl_*.vhd, rtl/pll*, the T80 files the core
+    does not instantiate (T80s, T80a, T80as, T80pa, T80sed, T8080se, GBse, Z80, T16450), sys/: not used.
+
+
+Other material
+--------------
+  - rtl/tango/tg16_aboost.v: the Audio Boost stage, copied from tg16-tango by way of scramble-tango (the same
+    authors), GPL-3.0-or-later as its header says: a port of the knee compressor of MiSTer's TurboGrafx16_MiSTer
+    (TurboGrafx16.sv compr()).
+  - tools/gen_gx_dbg_ov.py and the file it writes, rtl/tango/gx_dbg_ov.v (the dev build's debug overlay; release
+    builds do not include it): adapted from tg16-tango tools/gen_tg16_dbg_ov.py (the same authors); its 5 x 7 glyphs
+    were drawn for that file.
+  - rtl/tango_galaxian.v, build/build_galaxian.sh, build/galaxian_ddr3.sdc: the Tango wrapper, its build and its
+    timing constraints, adapted from scramble-tango (rtl/tango_scramble.v, build/build_scramble.sh,
+    build/scramble_ddr3.sdc) and galaga-tango (rtl/tango_galaga.v, hiscore.v's wiring), the same authors.
+  - build/build_galaxian.sh also takes from the Arcade Template skeleton the port started from, arcade-template-tango
+    (GPL-2.0-or-later, the Tango authors), here under GPL-3.0-or-later as that licence's "any later version"
+    allows.
+
+
+ROM data: the games' ROMs and PROMs are not in this repository or in a bitstream built from it; a user supplies them
+as MAME zips, assembled at run time by the Tango firmware from the .mra.  The one exception is the two homebrew .mra
+files, mra/Clean Sweep.mra and mra/Mr. Do Nightmare.mra: they carry their game program as inline hex in rom index 0,
+as published in MiSTer's Arcade-Galaxian release (MiSTer-devel/Arcade-Galaxian_MiSTer, releases/); their <rom>
+entries are MiSTer's, unchanged (the Tango .mra changes only the switches' default, the buttons and the header
+comment).  No licence statement for that program data is given upstream, and none is
+claimed here.  There is no other ROM data in this repository.

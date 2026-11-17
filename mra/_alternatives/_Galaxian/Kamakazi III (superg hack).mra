@@ -1,0 +1,77 @@
+<misterromdescription>
+	<name>Kamakazi III</name>
+	<region></region>
+	<homebrew>yes</homebrew>
+	<bootleg>no</bootleg>
+	<version>Superg</version>
+	<alternative>Scramble</alternative>
+	<platform></platform>
+	<series></series>
+	<year>1979</year>
+	<manufacturer>hack</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>kamakazi3</setname>
+	<parent></parent>
+	<mameversion>0218</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "_alternatives/_Galaxian/Kamakazi III (superg hack).mra"
+	     (the MiSTer arcade package's _Arcade folder). The <rom> entries and <nvram> are MiSTer's, unchanged: rom index
+	     1 is the game byte, rom index 0 the image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score
+	     table where MiSTer has one. <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS superg (GAME line 16361,
+	     set kamakazi3): the menu has Cabinet (bit 5), Service Mode (bit 6), Coinage (bits 14,15), Bonus Life (bits
+	     16,17), Lives (bit 18) with MAME's settings and defaults. Off the menu at MAME's default: Unused (bit 19).
+	     Changed or removed from MiSTer's file: Service (bit 7: Off,On); Test (bit 6: Off,On); Coinage (bits 14,15:
+	     1c/1cr,1c/2cr,2c/1cr,Free Play); Bonus Life After (bits 16,17: None,4000,5000,7000). The default is 9F,1F,01
+	     (MiSTer's file: 1F,1F,00). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin, Service), and
+	     sets no default layout (the buttons are defined in the menu). The empty rom index 1 leaves the core on its
+	     default game byte, 00 (Galaxian). No ROM data from a MAME zip is in this file: the ROMs come from your own MAME
+	     zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>8-way</joystick>
+	<special_controls></special_controls>
+	<num_buttons>2</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,Service"></buttons>
+
+	<switches default="9F,1F,01">
+		<dip bits="5" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="6" ids="Off,On" name="Service Mode"></dip>
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,1 Coin/2 Credits,Free Play" name="Coinage" values="1,0,2,3"></dip>
+		<dip bits="16,17" ids="None,4000,5000,7000" name="Bonus Life"></dip>
+		<dip bits="18" ids="3,5" name="Lives"></dip>
+	</switches>
+
+	<rom index="1"></rom>
+	<rom index="0" md5="81834f35751e8e1f8daab61f0b969409" zip="galaxian.zip|kamakazi3.zip">
+		<part crc="e8f3aa67" name="f_r_a.bin"></part>
+		<part crc="f58283e3" name="f_a.bin"></part>
+		<part crc="ddeabdae" name="f_b.bin"></part>
+		<part crc="c8530a88" name="f_r_c.bin"></part>
+		<part crc="da2d77e0" name="f_r_d.bin"></part>
+		<part crc="da2d77e0" name="f_r_d.bin"></part>
+		<part crc="da2d77e0" name="f_r_d.bin"></part>
+		<part crc="da2d77e0" name="f_r_d.bin"></part>
+		<part crc="977e37cf" name="r_b.bin"></part>
+		<part crc="977e37cf" name="r_b.bin"></part>
+		<part crc="d0ba22c9" name="r_a.bin"></part>
+		<part crc="d0ba22c9" name="r_a.bin"></part>
+		<part crc="c3ac9467" name="6l.bpr"></part>
+		</rom>
+	<rom index="2"></rom>
+	<rom index="3"></rom>
+	<rom index="4"></rom>
+
+	<nvram></nvram>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

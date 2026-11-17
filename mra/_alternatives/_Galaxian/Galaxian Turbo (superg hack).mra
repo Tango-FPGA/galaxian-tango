@@ -1,0 +1,77 @@
+<misterromdescription>
+	<name>Galaxian Turbo</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version>Superg</version>
+	<alternative>Galaxian</alternative>
+	<platform></platform>
+	<series>Galaxian</series>
+	<year>1979</year>
+	<manufacturer>Namco</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>galturbo</setname>
+	<parent>galaxian</parent>
+	<mameversion>0218</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "_alternatives/_Galaxian/Galaxian Turbo (superg
+	     hack).mra" (the MiSTer arcade package's _Arcade folder). The <rom> entries and <nvram> are MiSTer's, unchanged:
+	     rom index 1 is the game byte, rom index 0 the image in upstream's layout (its md5 is MiSTer's), rom index 3 the
+	     hi-score table where MiSTer has one. <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS superg (GAME line
+	     16288, set galturbo): the menu has Cabinet (bit 5), Service Mode (bit 6), Coinage (bits 14,15), Bonus Life
+	     (bits 16,17), Lives (bit 18) with MAME's settings and defaults. Off the menu at MAME's default: Unused (bit
+	     19). Changed or removed from MiSTer's file: Service (bit 7: Off,On); Test (bit 6: Off,On); Coinage (bits 14,15:
+	     1c/1cr,1c/2cr,2c/1cr,Free Play); Bonus Life After (bits 16,17: None,4000,5000,7000). The default is 9F,1F,01
+	     (MiSTer's file: 1F,1F,00). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin, Service), and
+	     sets no default layout (the buttons are defined in the menu). The empty rom index 1 leaves the core on its
+	     default game byte, 00 (Galaxian). No ROM data from a MAME zip is in this file: the ROMs come from your own MAME
+	     zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,Service"></buttons>
+
+	<switches default="9F,1F,01">
+		<dip bits="5" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="6" ids="Off,On" name="Service Mode"></dip>
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,1 Coin/2 Credits,Free Play" name="Coinage" values="1,0,2,3"></dip>
+		<dip bits="16,17" ids="None,4000,5000,7000" name="Bonus Life"></dip>
+		<dip bits="18" ids="3,5" name="Lives"></dip>
+	</switches>
+
+	<rom index="1"></rom>
+	<rom index="0" md5="690d1fe33fa2a2cbe2cf9acf470a6896" zip="galaxian.zip|galturbo.zip">
+		<part crc="e8f3aa67" name="galturbo.u"></part>
+		<part crc="bc16064e" name="galx.v"></part>
+		<part crc="ddeabdae" name="superg.w"></part>
+		<part crc="a44f450f" name="galturbo.y"></part>
+		<part crc="3247f3d4" name="galturbo.z"></part>
+		<part crc="3247f3d4" name="galturbo.z"></part>
+		<part crc="3247f3d4" name="galturbo.z"></part>
+		<part crc="3247f3d4" name="galturbo.z"></part>
+		<part crc="a713fd1a" name="galturbo.1h"></part>
+		<part crc="a713fd1a" name="galturbo.1h"></part>
+		<part crc="28511790" name="galturbo.1k"></part>
+		<part crc="28511790" name="galturbo.1k"></part>
+		<part crc="c3ac9467" name="6l.bpr"></part>
+		</rom>
+	<rom index="2"></rom>
+	<rom index="3"></rom>
+	<rom index="4"></rom>
+
+	<nvram></nvram>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

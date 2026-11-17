@@ -1,0 +1,79 @@
+<misterromdescription>
+	<name>Pisces</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative></alternative>
+	<platform></platform>
+	<series></series>
+	<year>1982</year>
+	<manufacturer>Subelectro</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>pisces</setname>
+	<parent>pisces</parent>
+	<mameversion>0220</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "Pisces.mra" (the MiSTer arcade package's _Arcade
+	     folder). The <rom> entries and <nvram> are MiSTer's, unchanged: rom index 1 is the game byte, rom index 0 the
+	     image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score table where MiSTer has one.
+	     <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS pisces (GAME line 16368, set pisces): the menu has
+	     Lives (bit 14), Cabinet (bit 15), Bonus Life (bit 16), Coinage (bit 17), Difficulty (bit 18) with MAME's
+	     settings and defaults. Off the menu at MAME's default: Unused (bit 19). Changed or removed from MiSTer's file:
+	     Bonus Life After (bit 16: 10000,20000); Coinage (bit 17: 1c/1cr,2c/1cr). The default is 1F,1F,00 (MiSTer's
+	     file: FF,1F,00). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin, Service); Service is "-",
+	     not read by this game, and sets no default layout (the buttons are defined in the menu). No ROM data from a
+	     MAME zip is in this file: the ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,-"></buttons>
+
+	<switches default="1F,1F,00">
+		<dip bits="14" ids="3,4" name="Lives"></dip>
+		<dip bits="15" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="16" ids="10000,20000" name="Bonus Life"></dip>
+		<dip bits="17" ids="A 2C/1C  B 1C/3C,A 1C/1C  B 1C/6C" name="Coinage" values="1,0"></dip>
+		<dip bits="18" ids="Easy,Hard" name="Difficulty"></dip>
+	</switches>
+
+	<rom index="1">
+		<part>0B</part>
+	</rom>
+	<rom index="0" md5="41f6f556ea5dd7cc27d2ca64feea8b9f" zip="pisces.zip">
+		<part crc="40c5b0e4" name="p1.bin"></part>
+		<part crc="055f9762" name="p2.bin"></part>
+		<part crc="3073dd04" name="p3.bin"></part>
+		<part crc="44aaf525" name="p4.bin"></part>
+		<part crc="fade512b" name="p5.bin"></part>
+		<part crc="5ab2822f" name="p6.bin"></part>
+		<part crc="5ab2822f" name="p6.bin"></part>
+		<part crc="5ab2822f" name="p6.bin"></part>
+		<part crc="9503a23a" name="g09.bin"></part>
+		<part crc="0adfc3fe" name="g11.bin"></part>
+		<part crc="3e61f849" name="g10.bin"></part>
+		<part crc="7130e9eb" name="g12.bin"></part>
+		<part crc="57a45057" name="colour.bin"></part>
+	</rom>
+	<rom index="2"></rom>
+	<rom index="3" md5="none">
+		<part>
+		00 00 FF 00 00 FF 00 02 00 02 00 01 00 FF 02 00
+		00 00 40 21 00 03 00 00
+		</part>
+	</rom>
+	<nvram index="4" size="3"/>
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

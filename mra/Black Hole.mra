@@ -1,0 +1,78 @@
+<misterromdescription>
+	<name>Black Hole</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative></alternative>
+	<platform></platform>
+	<series></series>
+	<year>1981</year>
+	<manufacturer>TDS &amp; MINTS</manufacturer>
+	<category>Shooter - Vertical</category>
+
+	<setname>blkhole</setname>
+	<parent>blkhole</parent>
+	<mameversion>0220</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "Black Hole.mra" (the MiSTer arcade package's _Arcade
+	     folder). The <rom> entries and <nvram> are MiSTer's, unchanged: rom index 1 is the game byte, rom index 0 the
+	     image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score table where MiSTer has one.
+	     <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS blkhole (GAME line 16333, set blkhole): the menu has
+	     Coinage (bits 14,15), Bonus Life (bit 16), Cabinet (bit 17) with MAME's settings and defaults. Off the menu at
+	     MAME's default: Unused (bit 18), Unused (bit 19). Changed or removed from MiSTer's file: Coinage (bits 14,15:
+	     1c/1cr,1c/3cr,1c/2cr,2c/1cr); Bonus Life After (bit 16: 5000,10000); Cabinet (bit 17: Cocktail,Upright). The
+	     default is 1F,1F,02 (MiSTer's file: FF,1F,02). <buttons> names the core's buttons (Fire, Start 1P, Start 2P,
+	     Coin, Service); Service is "-", not read by this game, and sets no default layout (the buttons are defined in
+	     the menu). No ROM data from a MAME zip is in this file: the ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,-"></buttons>
+
+	<switches default="1F,1F,02">
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,1 Coin/2 Credits,1 Coin/3 Credits" name="Coinage" values="3,0,1,2"></dip>
+		<dip bits="16" ids="5000,10000" name="Bonus Life"></dip>
+		<dip bits="17" ids="Upright,Cocktail" name="Cabinet" values="1,0"></dip>
+	</switches>
+
+	<rom index="1">
+		<part>03</part>
+	</rom>
+	<rom index="0" md5="c4a5705706f6ff4fbf6e921b26ce78e4" zip="blkhole.zip">
+		<part crc="64998819" name="bh1"></part>
+		<part crc="26f26ce4" name="bh2"></part>
+		<part crc="3418bc45" name="bh3"></part>
+		<part crc="735ff481" name="bh4"></part>
+		<part crc="3f657be9" name="bh5"></part>
+		<part crc="a057ab35" name="bh6"></part>
+		<part crc="a057ab35" name="bh6"></part>
+		<part crc="a057ab35" name="bh6"></part>
+		<part crc="975ba821" name="bh7"></part>
+		<part crc="975ba821" name="bh7"></part>
+		<part crc="03d11020" name="bh8"></part>
+		<part crc="03d11020" name="bh8"></part>
+		<part crc="c3ac9467" name="6l.bpr"></part>
+	</rom>
+	<rom index="2"></rom>
+	<rom index="3" md5="none">
+		<part>
+		00 00 00 48 00 00 00 02 00 02 00 08 00 FF 02 00
+		00 00 41 40 00 09 58 00
+		</part>
+	</rom>
+	<nvram index="4" size="9"/>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

@@ -1,0 +1,16 @@
+# Gowin output
+build/out/
+build/out_draw*/
+build/*_gate.txt
+build/*.log
+*.fs
+*.bin
+__pycache__/
+# bitstream archive (Gowin output copies)
+bitstreams/
+# ROMs never enter the repository: MAME zips and assembled images stay outside git
+*.zip
+*.rom
+roms/
+# GHDL netlist output
+build/ghdl_out/

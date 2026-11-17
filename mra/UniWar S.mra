@@ -1,0 +1,82 @@
+<misterromdescription>
+	<name>UniWar S</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative></alternative>
+	<platform></platform>
+	<series></series>
+	<year>1980</year>
+	<manufacturer>Irem</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>uniwars</setname>
+	<parent>uniwars</parent>
+	<mameversion>0220</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "UniWar S.mra" (the MiSTer arcade package's _Arcade
+	     folder). The <rom> entries and <nvram> are MiSTer's, but for the change below: rom index 1 is the game byte,
+	     rom index 0 the image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score table where MiSTer
+	     has one. Rom index 3 starts with START_WAIT 03C00000 (MiSTer's file: 01FFFF00): this core counts it in its
+	     24.576 MHz clock, and the hi-score table holds the game's own values only from frame 131 after reset, so a
+	     hi-score save before then is refused. <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS superg (GAME line
+	     16372, set uniwars): the menu has Cabinet (bit 5), Service Mode (bit 6), Coinage (bits 14,15), Bonus Life (bits
+	     16,17), Lives (bit 18) with MAME's settings and defaults. Off the menu at MAME's default: Unused (bit 19).
+	     Changed or removed from MiSTer's file: Service (bit 7: Off,On); Test (bit 6: Off,On); Coinage (bits 14,15:
+	     1c/1cr,1c/2cr,2c/1cr,Free Play); Bonus Life After (bits 16,17: none,4000,5000,7000). The default is 9F,1F,01
+	     (MiSTer's file: 1F,1F,00). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin, Service), and
+	     sets no default layout (the buttons are defined in the menu). No ROM data from a MAME zip is in this file: the
+	     ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,Service"></buttons>
+
+	<switches default="9F,1F,01">
+		<dip bits="5" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="6" ids="Off,On" name="Service Mode"></dip>
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,1 Coin/2 Credits,Free Play" name="Coinage" values="1,0,2,3"></dip>
+		<dip bits="16,17" ids="None,4000,5000,7000" name="Bonus Life"></dip>
+		<dip bits="18" ids="3,5" name="Lives"></dip>
+	</switches>
+
+	<rom index="1">
+		<part>0C</part>
+	</rom>
+	<rom index="0" md5="b270e45e9d2ca2e73b081fed66d9f3db" zip="uniwars.zip">
+		<part crc="d975af10" name="f07_1a.bin"></part>
+		<part crc="b2ed14c3" name="h07_2a.bin"></part>
+		<part crc="945f4160" name="k07_3a.bin"></part>
+		<part crc="ddc80bc5" name="m07_4a.bin"></part>
+		<part crc="62354351" name="d08p_5a.bin"></part>
+		<part crc="270a3f4d" name="gg6"></part>
+		<part crc="c9245346" name="m08p_7a.bin"></part>
+		<part crc="797d45c7" name="n08p_8a.bin"></part>
+		<part crc="012941e0" name="egg10"></part>
+		<part crc="c26132af" name="h01_2.bin"></part>
+		<part crc="fc8b58fd" name="egg9"></part>
+		<part crc="dcc2b33b" name="k01_2.bin"></part>
+		<part crc="25c79518" name="uniwars.clr"></part>
+	</rom>
+	<rom index="3" md5="none">
+		<part>
+		03 C0 00 00 00 FF 00 02 00 02 00 01 00 FF 02 00
+		00 00 40 a8 00 03 00 00
+		</part>
+	</rom>
+	<nvram index="4" size="3"/>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

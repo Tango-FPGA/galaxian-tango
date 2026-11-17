@@ -1,0 +1,68 @@
+<misterromdescription>
+	<name>Lucky Today</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative></alternative>
+	<platform></platform>
+	<series></series>
+	<year>1980</year>
+	<manufacturer>Sigma</manufacturer>
+	<category>Gambling</category>
+
+	<setname>luctoday</setname>
+	<parent>luctoday</parent>
+	<mameversion>0220</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "Lucky Today.mra" (the MiSTer arcade package's _Arcade
+	     folder). The <rom> entries and <nvram> are MiSTer's, unchanged: rom index 1 is the game byte, rom index 0 the
+	     image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score table where MiSTer has one. MAME
+	     0.264's galaxian.cpp INPUT_PORTS luctoday (GAME line 16335, set luctoday) has no DIP switch, so this file has
+	     no <switches> (MiSTer's file had Bonus Life After (bit 16); Lives (bit 18); Cabinet (bit 19)): the firmware
+	     sends no DIP word and the core keeps its default DIP word for this game byte. <buttons> names the core's
+	     buttons (Fire, Start 1P, Start 2P, Coin, Service); Service is "-", not read by this game, and sets no default
+	     layout (the buttons are defined in the menu). No ROM data from a MAME zip is in this file: the ROMs come from
+	     your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (ccw)</rotation>
+	<flip>yes</flip>
+
+	<players>1</players>
+	<joystick>2-way vertical</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,-"></buttons>
+
+	<rom index="1">
+		<part>11</part>
+	</rom>
+	<rom index="0" md5="7dd164c166c9346132ed34ae75e9e496" zip="luctoday.zip">
+		<part crc="59c389b9" name="ltprog1.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="ac3893b1" name="ltprog2.bin"></part>
+		<part crc="8cd73bdc" name="ltchar2.bin"></part>
+		<part crc="8cd73bdc" name="ltchar2.bin"></part>
+		<part crc="b5ba9946" name="ltchar1.bin"></part>
+		<part crc="b5ba9946" name="ltchar1.bin"></part>
+		<part crc="24652bc4" name="74s288.ch"></part>
+	</rom>
+	<rom index="2"></rom>
+	<rom index="3"></rom>
+	<rom index="4"></rom>
+
+	<nvram></nvram>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

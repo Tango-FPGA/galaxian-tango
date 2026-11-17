@@ -1,0 +1,80 @@
+<misterromdescription>
+	<name>Gingateikoku no Gyakushu</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>yes</bootleg>
+	<version>Set 1</version>
+	<alternative>UniWar S</alternative>
+	<platform></platform>
+	<series></series>
+	<year>1980</year>
+	<manufacturer>bootleg</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>gteikokub</setname>
+	<parent>gteikoku</parent>
+	<mameversion>0218</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "_alternatives/_Uniwars/Gingateikoku no Gyakushu (bootleg
+	     set 1).mra" (the MiSTer arcade package's _Arcade folder). The <rom> entries and <nvram> are MiSTer's, but for
+	     the change below: rom index 1 is the game byte, rom index 0 the image in upstream's layout (its md5 is
+	     MiSTer's), rom index 3 the hi-score table where MiSTer has one. Rom index 1 is two bytes, 81 0C: the option
+	     byte 81 turns this set counter-clockwise (MAME ROT270), where its game byte's family turns clockwise; the game
+	     byte stays last. <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS gteikokub (GAME line 16376, set
+	     gteikokub): the menu has Coin A (bit 14), Coin B (bit 15), Bonus Life (bit 16), Lives (bit 18), Cabinet (bit
+	     19) with MAME's settings and defaults. Off the menu at MAME's default: Unused (bit 17). Changed or removed from
+	     MiSTer's file: Service (bit 7: Off,On); Test (bit 6: Off,On); Cabinet (bit 5: Upright,Cocktail); Coinage (bits
+	     14,15: 1c/1cr,1c/2cr,2c/1cr,Free Play); Bonus Life After (bits 16,17: None,4000,5000,7000). The default is
+	     1F,DF,00 (MiSTer's file: 1F,1F,00). <buttons> names the core's buttons (Fire, Start 1P, Start 2P, Coin,
+	     Service); Service is "-", not read by this game, and sets no default layout (the buttons are defined in the
+	     menu). No ROM data from a MAME zip is in this file: the ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (ccw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<button_names></button_names>
+
+	<buttons names="Fire,Start 1P,Start 2P,Coin,-"></buttons>
+
+	<switches default="1F,DF,00">
+		<dip bits="14" ids="2 Coins/1 Credit,1 Coin/1 Credit" name="Coin A"></dip>
+		<dip bits="15" ids="1 Coin/3 Credits,1 Coin/5 Credits" name="Coin B" values="1,0"></dip>
+		<dip bits="16" ids="7000,None" name="Bonus Life"></dip>
+		<dip bits="18" ids="3,5" name="Lives"></dip>
+		<dip bits="19" ids="Upright,Cocktail" name="Cabinet"></dip>
+	</switches>
+
+	<rom index="1">
+		<part>81 0C</part>
+		</rom>
+	<rom index="0" md5="5d2013d51cbf52d046cf044b99721e3d" zip="uniwars.zip|gteikokub.zip">
+		<part crc="bf00252f" name="1.bin"></part>
+		<part crc="f712b7d5" name="2.bin"></part>
+		<part crc="945f4160" name="k07_3a.bin"></part>
+		<part crc="808a39a8" name="4.bin"></part>
+		<part crc="36fe6e67" name="5.bin"></part>
+		<part crc="c5ea67e8" name="6.bin"></part>
+		<part crc="c9245346" name="m08p_7a.bin"></part>
+		<part crc="28df3229" name="8.bin"></part>
+		<part crc="8313c959" name="h01_1.bin"></part>
+		<part crc="c26132af" name="h01_2.bin"></part>
+		<part crc="c9d4537e" name="k01_1.bin"></part>
+		<part crc="dcc2b33b" name="k01_2.bin"></part>
+		<part crc="6a0c7d87" name="l06_prom.bin"></part>
+		</rom>
+	<rom index="2"></rom>
+	<rom index="3"></rom>
+	<rom index="4"></rom>
+
+	<nvram></nvram>
+
+	<remark></remark>
+
+	<mratimestamp>20210430005030</mratimestamp>
+</misterromdescription>

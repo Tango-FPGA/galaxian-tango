@@ -1,0 +1,87 @@
+<misterromdescription>
+	<name>King &amp; Balloon</name>
+	<region></region>
+	<homebrew>no</homebrew>
+	<bootleg>no</bootleg>
+	<version></version>
+	<alternative></alternative>
+	<platform></platform>
+	<series></series>
+	<year>1980</year>
+	<manufacturer>Namco</manufacturer>
+	<category>Shooter - Gallery</category>
+
+	<setname>kingballj</setname>
+	<parent>kingball</parent>
+	<mameversion>0216</mameversion>
+	<rbf>galaxian</rbf>
+	<!-- Tango .mra for the galaxian-tango core, from MiSTer's "King and Balloon (Japan).mra" (the MiSTer arcade
+	     package's _Arcade folder). The <rom> entries and <nvram> are MiSTer's, but for the change below: rom index 1 is
+	     the game byte, rom index 0 the image in upstream's layout (its md5 is MiSTer's), rom index 3 the hi-score table
+	     where MiSTer has one. Rom index 3 starts with START_WAIT 0B000000 (MiSTer's file: 00000000): this core counts
+	     it in its 24.576 MHz clock, and the hi-score table holds the game's own values only from frame 419 after reset,
+	     so a hi-score save before then is refused. <name> is MAME's title, "King & Balloon" (MiSTer's file said "King
+	     and Balloon"). <switches> follow MAME 0.264's galaxian.cpp INPUT_PORTS kingball (GAME line 16529, set
+	     kingballj): the menu has Cabinet (bit 5), Service Mode (bit 6), Coinage (bits 14,15), Bonus Life (bits 16,17),
+	     Lives (bit 18), Speech (bit 24) with MAME's settings and defaults. Off the menu at MAME's default: Unused (bit
+	     19). Changed or removed from MiSTer's file: Service (bit 7: Off,On); Test (bit 6: Off,On); Coinage (bits 14,15:
+	     1c/1cr,1c/2cr,2c/1cr,Free Play); Bonus Life After (bits 16,17: 10000,12000,15000,None). The default is
+	     9F,5F,04,01 (MiSTer's file: 1F,1F,04). Speech (bit 24, DIP byte 3 bit 0) is the speech board's enable switch,
+	     MAME's FAKE port bit 1; Service Mode (bit 6) is FAKE bit 0, read on IN0 bit 6 while 9N Q3 is 0. <buttons> names
+	     the core's buttons (Fire, Start 1P, Start 2P, Coin, Service), and sets no default layout (the buttons are
+	     defined in the menu). No ROM data from a MAME zip is in this file: the ROMs come from your own MAME zips. -->
+	<about></about>
+
+	<resolution>15kHz</resolution>
+	<rotation>vertical (cw)</rotation>
+	<flip>yes</flip>
+
+	<players>2 (alternating)</players>
+	<joystick>2-way horizontal</joystick>
+	<special_controls></special_controls>
+	<num_buttons>1</num_buttons>
+	<buttons names="Fire,Start 1P,Start 2P,Coin,Service"></buttons>
+
+	<buttons default="A,Start,Select,R,B,L" names="Fire,Start 1P,Start 2P,Coin,Test,Pause"></buttons>
+
+	<switches default="9F,5F,04,01">
+		<dip bits="5" ids="Upright,Cocktail" name="Cabinet"></dip>
+		<dip bits="6" ids="Off,On" name="Service Mode"></dip>
+		<dip bits="14,15" ids="2 Coins/1 Credit,1 Coin/1 Credit,1 Coin/2 Credits,Free Play" name="Coinage" values="3,1,2,0"></dip>
+		<dip bits="16,17" ids="10000,12000,15000,None" name="Bonus Life"></dip>
+		<dip bits="18" ids="2,3" name="Lives"></dip>
+		<dip bits="24" ids="Off,On" name="Speech"></dip>
+	</switches>
+	
+	<rom index="1"><part>07</part></rom>
+	<rom index="0" zip="kingball.zip|kingballj.zip" md5="none" type="merged|nonmerged">
+		<part crc="6cb49046" name="prg1.7f"/>
+		<part crc="c223b416" name="prg2.7j"/>
+		<part crc="453634c0" name="prg3.7l"/>
+		<part repeat="0x1800">FF</part>
+		<part crc="a206757d" name="chg2.1k"/>
+		<part crc="a206757d" name="chg2.1k"/>
+		<part crc="9cd550e7" name="chg1.1h"/>
+		<part crc="9cd550e7" name="chg1.1h"/>
+		<part crc="15dd5b16" name="kb2-1"/>
+		<part repeat="0x0FE0">00</part>
+		<part crc="ba16beb7" name="kbj1.ic4"/>
+		<part crc="56686a63" name="kbj2.ic5"/>
+		<part crc="fbc570a5" name="kbj3.ic6"/>
+		<part crc="56686a63" name="kbj2.ic7"/>
+	</rom>
+	<rom index="2"></rom>
+	<rom index="3" md5="none">
+		<part>
+		0B 00 00 00 00 FF 00 02 00 02 00 01 00 FF 02 00
+		00 00 83 05 00 03 00 00
+		00 00 80 0d 00 03 00 00
+		00 00 83 02 00 01 01 01
+		</part>
+	</rom>
+	<nvram index="4" size="7"/>
+
+	<remark></remark>
+
+	<mratimestamp>202106111651</mratimestamp>
+</misterromdescription>
