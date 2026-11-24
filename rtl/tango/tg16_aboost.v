@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2017-2019 Sorgelig (TurboGrafx16_MiSTer TurboGrafx16.sv, compr(), GPL-2.0-or-later)
+// Copyright (c) 2026 the Tango authors
 //==============================================================================
 // tg16_aboost.v -- the "Master Audio Boost" stage, MiSTer's way. One channel. Copied from tg16-tango rtl/tango/tg16_aboost.v (the same authors).
 //

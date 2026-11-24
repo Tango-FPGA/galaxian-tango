@@ -6,14 +6,14 @@ Source: <https://github.com/MiSTer-devel/Arcade-Galaxian_MiSTer>, commit
 The T80 files are byte-identical to that commit (`rtl/T80/` there). They are never edited here: a change the Tango
 port needs goes into a build-time copy or a replacement file, listed in `NOTICE` with the reason.
 
-`hiscore.v` is upstream's `rtl/hiscore.v` (Hiscores_MiSTer version 0014) with the Tango changes T1-T3, which its
-header lists after the version history. It is the same file as galaga-tango's `rtl/hiscore.v`, copied byte for
-byte (CRLF line endings, tabs). The module's ports and parameters are upstream's. A fix
-to it is made in both repositories with the same bytes. Licences: `NOTICE`.
+`hiscore.v` is upstream's `rtl/hiscore.v` (Hiscores_MiSTer version 0014) with the Tango changes T1-T5, which its
+header lists after the version history. The changes were made first in galaga-tango's copy of the module, and this
+file was copied from that copy byte for byte (CRLF line endings, tabs). The parameters are upstream's; T4 adds one
+input port, `vblank`. Licences: `NOTICE`.
 
 | File | sha256 |
 |---|---|
-| `hiscore.v` | `2b121c42b0314c7625e1a97f760dd636136003686666c4d686b6af228430b8af` (upstream's: `668f30e0...`) |
+| `hiscore.v` | `488060e5bcdb26238555562f3aa40fb4818fdda114a2b2088b8d15d8cf0789a8` (upstream's: `668f30e0...`) |
 | `T80/T80_Pack.vhd` | `90d5ea223629b169b25167de9ce2940b29a72cce24ede4a001a508d70ed7b193` |
 | `T80/T80_ALU.vhd` | `823a062b8be873505ac16e627351a5105101243a11483bf8f2446214893b739e` |
 | `T80/T80_MCode.vhd` | `0e24fa45984d9a51a8dc7b2608fa6d616c8a52accbad0524a4852f9c78230ed8` |

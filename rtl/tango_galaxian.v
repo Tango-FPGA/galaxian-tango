@@ -50,7 +50,8 @@ module tango_core (
     wire [7:0]  gx_r, gx_g, gx_b;   // S7 -> S8
     wire        gx_ce_pix;          // S7 -> S8, S10
     wire        gx_hblank;          // S7 -> S8, S10
-    wire        gx_vblank;          // S7 -> S8, S10
+    wire        gx_vblank;          // S7 -> S5, S8, S10
+    wire        gx_wd_reset;        // S7 -> S5: the watchdog's game reset
     wire        gx_hsync;           // S7 -> S8
     wire        gx_vsync;           // S7 -> S8, S10
     wire signed [15:0] gx_audio;    // S7 -> S9
@@ -123,10 +124,12 @@ module tango_core (
     // Drives: hs_addr, hs_d, hs_we, hs_pause, hs_configured, cpu_hold, ioctl_din, ioctl_upload_req (= 0),
     //         ioctl_upload_index (= 0).
     // Reads: clk_sys, game_reset, ioctl_upload, ioctl_download, ioctl_wr, ioctl_addr[24:0], ioctl_index[7:0],
-    //        ioctl_dout, OSD_STATUS, hs_q.
-    // hiscore.v (vendored, with the T1-T3 changes in its header): the .mra's hi-score table arrives at index 3, the
+    //        ioctl_dout, OSD_STATUS, hs_q, gx_vblank, gx_wd_reset.
+    // hiscore.v (vendored, with the T1-T5 changes in its header): the .mra's hi-score table arrives at index 3, the
     // saved dump at index 4 and is written into the game RAM after a reset falling edge (game_reset, the same reset as
-    // gx_top's); an upload of index 4 reads back the table an OSD-open extraction captured.  Its own pause request is
+    // gx_top's, or gx_top's watchdog reset: the board's watchdog resets the game, and the restore re-arms on every
+    // game reset); its start/end checks run once per frame from a vblank rise (T4); an upload of index 4 reads back
+    // the table an OSD-open extraction captured.  Its own pause request is
     // the only CPU hold (gx_top cpu_hold), and it is looped back as the "paused" acknowledge.  The RAM index is
     // {0, hs_addr}: 11 bits.  The .mra tables use 2-byte lengths.
     // The firmware saves on its own schedule: no save request from the core (ioctl_upload_req = 0, autosave = 0).
@@ -139,7 +142,8 @@ module tango_core (
     ) u_hiscore (
         .clk(clk_sys),
         .paused(hs_pause),
-        .reset(game_reset),
+        .reset(game_reset | gx_wd_reset),
+        .vblank(gx_vblank),
         .autosave(1'b0),
         .ioctl_upload(ioctl_upload),
         .ioctl_upload_req(),
@@ -178,7 +182,8 @@ module tango_core (
 
     // SECTION 7: the game
     // gx_top ports: rtl/gx/gx_top.v.
-    // Drives: gx_r, gx_g, gx_b, gx_ce_pix, gx_hblank, gx_vblank, gx_hsync, gx_vsync, gx_audio, rot_ccw, hs_q.
+    // Drives: gx_r, gx_g, gx_b, gx_ce_pix, gx_hblank, gx_vblank, gx_hsync, gx_vsync, gx_audio, rot_ccw, hs_q,
+    //         gx_wd_reset.
     // Reads: clk_sys, game_reset, mod, dn_addr, dn_data, dn_wr, the 14 pad wires, dsw, kb_speech_sw, cpu_hold, fw_rotate,
     //        rot_mra, hs_addr, hs_d, hs_we.
     gx_top u_game (
@@ -191,7 +196,7 @@ module tango_core (
         .hs_addr(hs_addr), .hs_d(hs_d), .hs_we(hs_we), .hs_q(hs_q),
         .r(gx_r), .g(gx_g), .b(gx_b),
         .ce_pix(gx_ce_pix), .hblank(gx_hblank), .vblank(gx_vblank), .hsync(gx_hsync), .vsync(gx_vsync),
-        .audio(gx_audio), .rot_ccw(rot_ccw)
+        .audio(gx_audio), .rot_ccw(rot_ccw), .wd_reset(gx_wd_reset)
     );
     // kb_speech_sw is gx_dl_ctrl's output: King and Balloon's speech switch (IN0 bit 6 through the 9N Q3 mux), DIP
     // byte 3 bit 0 of index 254, On (1) until a 254 download has written byte 3.

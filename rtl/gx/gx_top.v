@@ -49,6 +49,8 @@
 // gx_hv (active high).
 //
 // cpu_hold (hi-score engine, OSD pause) holds the CPU in WAIT and stops the watchdog.
+// wd_reset: the 6T watchdog's half of the game reset (game_reset & ~reset = wd[3] while reset is low), for the
+// hi-score engine, which re-arms its restore on every game reset as a machine reset does.
 `default_nettype none
 module gx_top (
     input  wire        clk,
@@ -89,7 +91,8 @@ module gx_top (
     output wire        hsync,
     output wire        vsync,
     output wire signed [15:0] audio,
-    output wire        rot_ccw
+    output wire        rot_ccw,
+    output wire        wd_reset        // the watchdog's game reset (6T Q3), not the system reset
 );
     // ---- per-game flags
     wire       map_moon, nmi_q0, irq_int, rom_4fff, ram_2k, ram_vic, mq_dec, stars_disp, mix_moon, bullet_az, kb;
@@ -184,6 +187,7 @@ module gx_top (
         .cpu_hold(cpu_hold), .wd_off(1'b0), .wait_n(wait_n), .wen(wen), .nmi_n(nmi_n), .int_n(int_n),
         .game_reset(game_reset)
     );
+    assign wd_reset = game_reset & ~reset;
 
     // ---- CPU ROM (32K): port A = download, port B = CPU
     wire [14:0] rom_a;

@@ -33,7 +33,10 @@ Vendored upstream files (rtl/galaxian/; rtl/galaxian/README.md has each file's s
     pending restore and re-arms an idle state machine; T2, an OSD-open extraction never overwrites a dump that is
     downloading or pending restore, and hands the state machine back to the restore; T3, an extraction captures the
     game's table only once it is trustworthy (its start/end values seen valid since reset, or START_WAIT elapsed since
-    reset).  The module's ports and parameters are unchanged.  The same modified file is used by galaga-tango.
+    reset); T4, a restore's start/end check run begins only at a vertical-blank rise, so one per frame, on a new
+    input port, vblank; T5, the start check of the second and later entries waits for the config tables to follow
+    the entry counter, so it reads that entry's own first byte.  The parameters are unchanged.  The changes were
+    made first in galaga-tango's copy of the module (the same authors).
 
 Text B (Daniel Wallner, T80):
 
@@ -82,7 +85,7 @@ Other material
 --------------
   - rtl/tango/tg16_aboost.v: the Audio Boost stage, copied from tg16-tango by way of scramble-tango (the same
     authors), GPL-3.0-or-later as its header says: a port of the knee compressor of MiSTer's TurboGrafx16_MiSTer
-    (TurboGrafx16.sv compr()).
+    (TurboGrafx16.sv compr(), copyright (C) 2017-2019 Sorgelig).
   - tools/gen_gx_dbg_ov.py and the file it writes, rtl/tango/gx_dbg_ov.v (the dev build's debug overlay; release
     builds do not include it): adapted from tg16-tango tools/gen_tg16_dbg_ov.py (the same authors); its 5 x 7 glyphs
     were drawn for that file.

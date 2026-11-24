@@ -1,6 +1,6 @@
 # galaxian-tango -- the Galaxian family for the Tango FPGA system
 
-**Version 2026-11-17** (date code `20261117`)
+**Version 2026-11-24** (date code `20261124`)
 
 galaxian-tango runs the **Namco Galaxian arcade hardware and its relatives** on the Tango FPGA system for the
 **Sipeed Tang Console 138K**: Galaxian, Moon Cresta, King and Balloon (with its speech board), UniWar S, Pisces, Black
@@ -28,13 +28,13 @@ its menu is [firmware-tango](https://github.com/Tango-FPGA/firmware-tango); the 
 
 ## On the board
 
-You need a Tang Console 138K with [firmware-tango](https://github.com/Tango-FPGA/firmware-tango) in its BL616 -- a
-version with `.mra` index 1 and 3 support (older versions cannot select the game or load the hi-score table) -- and
+You need a Tang Console 138K with [firmware-tango](https://github.com/Tango-FPGA/firmware-tango) 20261118 or later in its
+BL616 (older versions cannot select the game or load the hi-score table), and
 [menu-tango](https://github.com/Tango-FPGA/menu-tango)'s launcher on a FAT32 SD card (firmware-tango's README, "The SD
 card"), and your own ROM sets in MAME's format.
 
 The core is in this repository's **`releases/`** folder, one file per release named `Arcade-galaxian_<YYYYMMDD>.bin`
-(this version: `releases/Arcade-galaxian_20261117.bin`). Take the latest (the newest date) and copy it to the
+(this version: `releases/Arcade-galaxian_20261124.bin`). Take the latest (the newest date) and copy it to the
 card's `/_Arcade/cores/` under the same name.
 
 | On the card | What |
@@ -114,7 +114,7 @@ failed; the `.txt` holds the gate's report, the resource use and the netlists' s
 on-screen debug overlay (`rtl/tango/gx_dbg_ov.v`, written by `tools/gen_gx_dbg_ov.py`); release builds leave it out.
 
 `TANGO_BUILD_DATE=<YYMMDD>` sets the build date the menu shows (`V,v<YYMMDD>`; the default is today); this release's
-`releases/Arcade-galaxian_20261117.bin` was built with `TANGO_BUILD_DATE=261117`, and the same command with that
+`releases/Arcade-galaxian_20261124.bin` was built with `TANGO_BUILD_DATE=261124`, and the same command with that
 date rebuilds it bit for bit (Gowin V1.9.11.03, GHDL 4.1.0). The build's timing depends on placement, which changes
 with the build date: if its STA gate fails, build again with another `TANGO_BUILD_DATE`.
 
@@ -127,7 +127,7 @@ with the build date: if its STA gate fails, build again with another `TANGO_BUIL
 | `rtl/tango_galaxian.v` | the core (module `tango_core`): the framework's interface around `gx_top`, the ROM / DIP / hi-score downloads, the pads, rotation, audio and the Audio Boost |
 | `rtl/galaxian_clocks.v`, `rtl/pll_galaxian_mod.v` | the core's clock: 50 MHz to 24.576 MHz (+11 ppm) |
 | `rtl/tango/` | the wrapper's own modules: the download decode, the hi-score reset sequencer, the pad map, the Audio Boost `tg16_aboost.v`, the dev build's debug overlay `gx_dbg_ov.v` |
-| `rtl/galaxian/` | the T80 CPU from Arcade-Galaxian_MiSTer, unchanged, and MiSTer's hi-score module `hiscore.v` with three changes (`rtl/galaxian/README.md`: the commit and each file's sha256) |
+| `rtl/galaxian/` | the T80 CPU from Arcade-Galaxian_MiSTer, unchanged, and MiSTer's hi-score module `hiscore.v` with five changes (`rtl/galaxian/README.md`: the commit and each file's sha256) |
 | `mra/` | the `.mra` files: one per game, clones and bootlegs in `mra/_alternatives/` |
 | `build/` | the Gowin build, the GHDL netlist script and its file list, the core's timing constraints |
 | `tools/` | the netlist post-processors (`ghdl_fix_verilog.py`, `ghdl_suffix_modules.py`), the generators of the sound, mixer, filter and colour constants in `rtl/gx/` (`gx_snd_coefs.py`, `gx_snd_consts.py`, `gx_mix_coefs.py`, `gx_kb_filter.py`, `gx_colour_levels.py`) and of the debug overlay (`gen_gx_dbg_ov.py`) |

@@ -38,7 +38,7 @@
  0013 - 2021-09-01 -	Output configured signal for autosave option menu masking
  0014 - 2021-09-09 -	Fix turning on autosave w/o core reload 
 ============================================================================
- Tango FPGA changes (module interface and parameters unchanged):
+ Tango FPGA changes (parameters unchanged; T4 adds the vblank input):
  T1 - Completing a dump download sets restoring_dump and, when the state
       machine is idle (SM_STOPPED), re-arms it at SM_INIT_RESTORE. A dump that
       arrives after core reset has been released is therefore pending restore
@@ -60,6 +60,20 @@
       bound for the game having set up its table. RAM of a boot test shorter
       than START_WAIT is therefore never captured; with START_WAIT = 0 the
       behaviour is upstream's.
+ T4 - A start/end check run for a restore begins only at the start of a
+      vertical blank (new input vblank), so one check per frame, as MAME's
+      hiscore plugin checks once per frame (plugins/hiscore/init.lua, the frame
+      notifier): a game that writes an entry's first byte (its start value) and
+      then the rest of it within one frame is restored after the whole write,
+      not between its bytes.  This adds the vblank port; the other ports and
+      the parameters are unchanged.
+ T5 - The start check of the second and later entries reads that entry's own
+      first byte: the config tables (addr_base, start_val) are registered
+      RAM outputs that follow the entry counter one clock late, and the check
+      went straight to SM_CHECKBEGIN, so it compared the new start value with
+      the previous entry's first byte (with Galaga's config, 8A20's 00 passed
+      as 83ED's).  It now goes through SM_CHECKPREP, whose wait lets them
+      settle.
 ============================================================================
 */
 
@@ -76,6 +90,7 @@ module hiscore
 	input										clk,
 	input										paused,			// Signal from core confirming CPU is paused
 	input										reset,
+	input										vblank,			// T4: the core's vertical blank (active high)
 	input										autosave,		// Auto-save enabled (active high)
 
 	input										ioctl_upload,
@@ -236,6 +251,7 @@ reg	[7:0]								last_data_from_hps;		// Last cycle HPS IO data out
 reg	[7:0]								last_data_from_hps2;		// Last cycle +1 HPS IO data out
 reg	[7:0]								last_data_from_hps3;		// Last cycle +2 HPS IO data out
 reg										last_OSD_STATUS;			// Last cycle OSD status
+reg										last_vblank = 1'b0;		// Last cycle vblank (T4)
 
 reg	[24:0]							ram_addr;					// Target RAM address for hiscore read/write
 reg	[24:0]							base_io_addr;
@@ -393,6 +409,7 @@ begin
 	last_ioctl_download <= ioctl_download;
 	last_ioctl_index <= ioctl_index;
 	last_OSD_STATUS <= OSD_STATUS;
+	last_vblank <= vblank;
 
 	// Cascade incoming data bytes from HPS
 	if(ioctl_download && ioctl_wr)
@@ -611,7 +628,8 @@ begin
 							writing_scores <= 1'b0;
 							checking_scores <= 1'b0;
 							pause_cpu <= 1'b0;
-							state <= SM_CHECKPREP;
+							// T4: a start/end check run begins only at the start of a vertical blank
+							if (vblank == 1'b1 && last_vblank == 1'b0) state <= SM_CHECKPREP;
 						end
 
 					// Start/end check states
@@ -679,8 +697,10 @@ begin
 								else
 								begin
 									// Increment counter and restart state machine to check next entry
+									// T5: through SM_CHECKPREP's wait, so the config tables' registered outputs
+									// (addr_base, start_val) follow the new counter before the start check reads
 									counter <= counter + 1'b1;
-									state <= SM_CHECKBEGIN;
+									state <= SM_CHECKPREP;
 								end
 							end
 							else
